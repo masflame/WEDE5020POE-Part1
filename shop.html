@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Bakery - Shop</title>
+    <style>
+        :root {
+            --rose: #b76047;
+            --rose-deep: #6e3527;
+            --gold: #f2c86d;
+            --cream: #fffaf3;
+            --ivory: #f7efe6;
+            --brown: #4b2f24;
+            --tan: #d7b28a;
+            --text: #3b2d2a;
+            --shadow: rgba(72, 50, 40, 0.12);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(214, 166, 125, 0.2), transparent 25%),
+                radial-gradient(circle at bottom right, rgba(185, 104, 78, 0.1), transparent 20%),
+                linear-gradient(180deg, #fffaf4 0%, #f7efe6 100%);
+        }
+
+        header {
+            background: linear-gradient(135deg, #5c2d1f 0%, #8c4b37 55%, #6d3424 100%);
+            color: white;
+            padding: 1.2rem 2rem 1rem;
+            box-shadow: 0 8px 18px rgba(74, 46, 36, 0.18);
+            border-bottom: 4px solid rgba(242, 200, 109, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.3rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 1rem 0 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 0.65rem 0.95rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(242, 200, 109, 0.15);
+            border-color: rgba(242, 200, 109, 0.8);
+            transform: translateY(-1px);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.25rem 1.25rem 3rem;
+        }
+
+        .shop-intro,
+        .shop-category {
+            background: rgba(255,255,255,0.78);
+            border: 1px solid rgba(103, 66, 49, 0.12);
+            border-radius: 22px;
+            box-shadow: 0 12px 22px rgba(82, 60, 50, 0.08);
+            padding: 1.4rem 1.5rem 1.6rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            margin: 0 0 0.5rem;
+            color: var(--rose-deep);
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2rem;
+        }
+
+        h3 {
+            margin: 0 0 0.5rem;
+            color: var(--rose-deep);
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-top: 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .product {
+            background: linear-gradient(180deg, #fffdfb 0%, #fff4ea 100%);
+            border: 1px solid rgba(143, 94, 73, 0.18);
+            border-radius: 18px;
+            padding: 0.8rem;
+            overflow: hidden;
+            box-shadow: 0 8px 16px var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 22px rgba(82, 60, 50, 0.12);
+        }
+
+        .product img {
+            width: 100%;
+            aspect-ratio: 1.15;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .product h4 {
+            margin: 0 0 0.45rem;
+            font-size: 1.08rem;
+            color: var(--brown);
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        .price {
+            display: inline-block;
+            margin: 0;
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            background: #f7d988;
+            color: var(--rose-deep);
+            font-weight: bold;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #4d2618 0%, #7e3d2b 100%);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            border-top: 4px solid rgba(242, 200, 109, 0.4);
+        }
+
+        footer p {
+            margin: 0.2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 520px) {
+            header {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            nav a {
+                padding: 0.6rem 0.75rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sunrise Bakery</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="shop.html" aria-current="page">Shop</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="shop-intro">
+            <h2>Shop Our Bakery</h2>
+            <p>Explore our freshly baked favourites. This catalogue is for browsing; please use our enquiry page to place an order or ask about availability.</p>
+        </section>
+
+        <section class="shop-category">
+            <h3>Celebration Cakes</h3>
+            <p>Made for birthdays, milestones, and every sweet occasion.</p>
+            <div class="product-grid">
+                <article class="product">
+                    <img src="images/cake-vanilla-celebration.png" alt="Vanilla celebration cake">
+                    <h4>Vanilla Celebration Cake</h4>
+                    <p class="price">R320</p>
+                </article>
+                <article class="product">
+                    <img src="images/cake-chocolate-fudge.png" alt="Chocolate fudge cake">
+                    <h4>Chocolate Fudge Cake</h4>
+                    <p class="price">R360</p>
+                </article>
+                <article class="product">
+                    <img src="images/cake-red-velvet.png" alt="Red velvet cake">
+                    <h4>Red Velvet Cake</h4>
+                    <p class="price">R380</p>
+                </article>
+                <article class="product">
+                    <img src="images/cake-almond-celebration.png" alt="Almond celebration cake">
+                    <h4>Almond Celebration Cake</h4>
+                    <p class="price">R340</p>
+                </article>
+                <article class="product">
+                    <img src="images/cake-lemon-cheesecake.png" alt="Lemon cheesecake">
+                    <h4>Lemon Cheesecake</h4>
+                    <p class="price">R330</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="shop-category">
+            <h3>Fresh Breads</h3>
+            <p>Warm loaves, baked fresh for your table every morning.</p>
+            <div class="product-grid">
+                <article class="product">
+                    <img src="images/bread-classic-sourdough.png" alt="Classic sourdough loaf">
+                    <h4>Classic Sourdough Loaf</h4>
+                    <p class="price">R48</p>
+                </article>
+                <article class="product">
+                    <img src="images/bread-farmhouse-white.png" alt="Farmhouse white loaf">
+                    <h4>Farmhouse White Loaf</h4>
+                    <p class="price">R35</p>
+                </article>
+                <article class="product">
+                    <img src="images/bread-wholewheat.png" alt="Wholewheat loaf">
+                    <h4>Wholewheat Loaf</h4>
+                    <p class="price">R38</p>
+                </article>
+                <article class="product">
+                    <img src="images/bread-rosemary-focaccia.png" alt="Rosemary focaccia">
+                    <h4>Rosemary Focaccia</h4>
+                    <p class="price">R55</p>
+                </article>
+                <article class="product">
+                    <img src="images/bread-cheese-rolls.png" alt="Cheese rolls">
+                    <h4>Cheese Rolls (6)</h4>
+                    <p class="price">R60</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="shop-category">
+            <h3>Pastries &amp; Treats</h3>
+            <p>Small-batch treats for a morning pause or an afternoon pick-me-up.</p>
+            <div class="product-grid">
+                <article class="product">
+                    <img src="images/pastry-butter-croissant.png" alt="Butter croissant">
+                    <h4>Butter Croissant</h4>
+                    <p class="price">R28</p>
+                </article>
+                <article class="product">
+                    <img src="images/pastry-almond-danish.png" alt="Almond Danish pastry">
+                    <h4>Almond Danish</h4>
+                    <p class="price">R32</p>
+                </article>
+                <article class="product">
+                    <img src="images/treat-blueberry-muffin.png" alt="Blueberry muffin">
+                    <h4>Blueberry Muffin</h4>
+                    <p class="price">R25</p>
+                </article>
+                <article class="product">
+                    <img src="images/treat-walnut-rolls.png" alt="Walnut rolls">
+                    <h4>Walnut Rolls (6)</h4>
+                    <p class="price">R30</p>
+                </article>
+                <article class="product">
+                    <img src="images/treat-chocolate-brownie.png" alt="Chocolate brownie">
+                    <h4>Chocolate Brownie</h4>
+                    <p class="price">R27</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sunrise Bakery. All rights reserved.</p>
+        <p>Polokwane, Limpopo, South Africa</p>
+    </footer>
+</body>
+</html>
